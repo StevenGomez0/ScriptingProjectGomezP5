@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class audioTrigger : MonoBehaviour
 {
-    private Rigidbody rb;
     private AudioSource audioSource;
     public AudioClip audioClip;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collosion)
     {
-        
+        if (collosion.gameObject.tag == "Player")
+        {
+            audioSource.PlayOneShot(audioClip);
+            Debug.Log("this is working correctly");
+        }
     }
 }
